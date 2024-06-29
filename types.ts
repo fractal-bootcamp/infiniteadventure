@@ -1,44 +1,58 @@
 
+
 import z from 'zod';
 
 
-export const LocationType = z.enum(['Dungeon', 'Cave', 'Castle']);
+export const locationTypeSchema = z.enum(['Dungeon', 'Cave', 'Castle', 'Forest']);
+export const tileTypeSchema = z.enum(['grass'])
 
-export const Tile = z.object({
-  type: z.string(),
+export const tileSchema = z.object({
+  type: tileTypeSchema,
   walkable: z.boolean(),
   description: z.string().optional()
 });
 
-export const FeatureType = z.enum(['Enemy', 'Chest', 'Pool', 'Pit', 'Grass']);
+export const featureTypeSchema = z.enum(['Enemy', 'Chest', 'Pool', 'Pit', 'Grass']);
 
-export const Feature = z.object({
-  type: FeatureType,
+export const featureSchema = z.object({
+  type: featureTypeSchema,
   description: z.string().optional()
 });
 
-export const Location = z.object({
-  name: z.string(),
-  description: z.string(),
-  locationType: LocationType,
-  grid: z.array(Tile).length(256),
-  features: z.array(Feature),
-  left: Location,
-
+export const terrainType = z.enum(['Enemy', 'Chest', 'Pool', 'Pit', 'Grass']);
+export const terrainSchema = z.object({
+  type: featureTypeSchema,
+  description: z.string().optional()
 });
 
-export type Location = z.infer<typeof Location>
+export const locationSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+  locationType: locationTypeSchema,
+  grid: z.array(tileSchema).length(256),
+  features: z.array(featureSchema),
+  terrain: z.array(terrainSchema),
+  x: z.number(),
+  y: z.number(),
+});
 
+export type Location = z.infer<typeof locationSchema>
+export type LocationWithChildren = Location & {
+  left?: Location;
+  right?: Location;
+  top?: Location;
+  bottom?: Location;
+};
 
 export const Game = z.object({
-  currentLocation: Location,
-  playerTile: Tile,
-  playerTeam: z.array(z.object({
+  currentLocation: locationSchema,
+  playerTile: tileSchema,
+  playerTeam: z.optional(z.array(z.object({
     name: z.string(),
     type: z.string(),
     level: z.number(),
     moves: z.array(z.string())
-  }))
+  })))
 });
 
 export type Game = z.infer<typeof Game>
