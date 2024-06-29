@@ -4,8 +4,8 @@ import { z } from "zod";
 import readline from "readline";
 
 const oai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY ?? undefined,
-  organization: process.env.OPENAI_ORG_ID ?? undefined,
+  apiKey: process.env["OPENAI_API_KEY"] ?? undefined,
+  organization: process.env["OPENAI_ORG_ID"] ?? undefined,
 });
 
 const client = Instructor({
@@ -13,12 +13,13 @@ const client = Instructor({
   mode: "TOOLS",
 });
 
-export const promptWithSchema = async (
+export const promptWithSchema = async <T extends z.ZodObject<any>>(
   prompt: string,
-  schema: z.ZodObject<any>
+  schema: T
 ) => {
   const response = await client.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
+    max_retries: 2,
     model: "gpt-3.5-turbo",
     response_model: {
       schema: schema,

@@ -11,25 +11,21 @@ export const tileTypeSchema = z.enum(["grass"]);
 export const tileSchema = z.object({
   type: tileTypeSchema,
   walkable: z.boolean(),
-  description: z.string().optional()
+  description: z.string().optional(),
+  interactive: z.boolean(),
 });
 
-export const featureTypeSchema = z.enum([
-  "Enemy",
-  "Chest",
-  "Pool",
-  "Pit",
-  "Grass"
-]);
+export const featureTypeSchema = z.enum(['enemy', 'chest']);
 
 export const featureSchema = z.object({
   type: featureTypeSchema,
-  description: z.string().optional()
+  description: z.string().optional(),
+  size: z.number().min(1).max(4)
 });
 
-export const terrainType = z.enum(["Enemy", "Chest", "Pool", "Pit", "Grass"]);
+export const terrainTypeSchema = z.enum(['forest', 'rock']);
 export const terrainSchema = z.object({
-  type: featureTypeSchema,
+  type: terrainTypeSchema,
   description: z.string().optional()
 });
 
