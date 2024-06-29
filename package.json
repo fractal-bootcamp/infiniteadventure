@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dbm": "npx prisma migrate dev"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "openai": "^4.52.2",
+    "typescript": "^5.5.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
