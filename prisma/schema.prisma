@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider                         = "zod-prisma-types"
+  output                           = "./generated/zod" // default is ./generated/zod
+  useMultipleFiles                 = false // default is false
+  writeBarrelFiles                 = true // default is true
+  createInputTypes                 = true // default is true
+  createModelTypes                 = true // default is true
+  addInputTypeValidation           = true // default is true
+  addIncludeType                   = true // default is true
+  addSelectType                    = true // default is true
+  validateWhereUniqueInput         = true // default is true
+  createOptionalDefaultValuesTypes = false // default is false
+  createRelationValuesTypes        = false // default is false
+  createPartialTypes               = false // default is false
+  useDefaultValidators             = true // default is true
+  coerceDate                       = true // default is true
+  writeNullishInModelTypes         = false // default is false
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
