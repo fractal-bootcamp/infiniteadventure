@@ -23,9 +23,10 @@ export const exampleBaseLocation: Location = {
       size: 1,
     }
   ],
-  terrain: Array(10).fill({}).map(() => ({
+  terrain: Array(5).fill({}).map(() => ({
     type: 'forest',
-    description: 'A dense patch of trees, too thick to pass through.'
+    description: 'A dense patch of trees, too thick to pass through.',
+    size: 2
   })),
   x: 0,
   y: 0
