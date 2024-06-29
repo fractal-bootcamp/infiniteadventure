@@ -52,7 +52,7 @@ export type LocationWithChildren = Location & {
   bottom?: Location;
 };
 
-export const Game = z.object({
+export const gameSchema = z.object({
   currentLocation: locationSchema, //current map region
   playerPosition: z.number(), //player's position in the current location
   playerTeam: z.optional(
@@ -67,4 +67,4 @@ export const Game = z.object({
   )
 });
 
-export type Game = z.infer<typeof Game>;
+export type Game = z.infer<typeof gameSchema>;
