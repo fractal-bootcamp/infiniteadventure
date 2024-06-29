@@ -2,31 +2,35 @@
 import z from 'zod';
 
 
-const LocationType = z.enum(['Dungeon', 'Cave', 'Castle']);
+export const LocationType = z.enum(['Dungeon', 'Cave', 'Castle']);
 
-const Tile = z.object({
+export const Tile = z.object({
   type: z.string(),
   walkable: z.boolean(),
   description: z.string().optional()
 });
 
-const FeatureType = z.enum(['Enemy', 'Chest', 'Pool', 'Pit', 'Grass']);
+export const FeatureType = z.enum(['Enemy', 'Chest', 'Pool', 'Pit', 'Grass']);
 
-const Feature = z.object({
+export const Feature = z.object({
   type: FeatureType,
   description: z.string().optional()
 });
 
-const Location = z.object({
+export const Location = z.object({
   name: z.string(),
   description: z.string(),
   locationType: LocationType,
   grid: z.array(Tile).length(256),
-  features: z.array(Feature)
+  features: z.array(Feature),
+  left: Location,
+
 });
 
+export type Location = z.infer<typeof Location>
 
-const Game = z.object({
+
+export const Game = z.object({
   currentLocation: Location,
   playerTile: Tile,
   playerTeam: z.array(z.object({
@@ -36,3 +40,5 @@ const Game = z.object({
     moves: z.array(z.string())
   }))
 });
+
+export type Game = z.infer<typeof Game>
