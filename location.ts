@@ -2,7 +2,7 @@ import type { Location } from "types";
 
 export type Direction = 'LEFT' | 'RIGHT' | 'UP' | 'DOWN'
 
-const exampleBaseLocation: Location = {
+export const exampleBaseLocation: Location = {
   name: "The Enchanted Forest",
   description: "A mysterious forest teeming with magical creatures and ancient secrets.",
   locationType: "Forest",
