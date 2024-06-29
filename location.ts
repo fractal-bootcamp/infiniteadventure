@@ -9,20 +9,24 @@ const exampleBaseLocation: Location = {
   grid: Array(256).fill({
     type: "grass",
     walkable: true,
-    object: null
+    interactive: false
   }),
   features: [
     {
-      type: "Enemy",
-      description: "A lurking shadow beast with piercing red eyes."
+      type: "enemy",
+      description: "A lurking shadow beast with piercing red eyes.",
       size: 1,
     },
     {
-      type: "Chest",
+      type: "chest",
       description: "An old wooden chest, covered in moss and vines.",
       size: 1,
     }
   ],
+  terrain: Array(10).fill({}).map(() => ({
+    type: 'forest',
+    description: 'A dense patch of trees, too thick to pass through.'
+  })),
   x: 0,
   y: 0
 }
