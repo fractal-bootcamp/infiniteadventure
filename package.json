@@ -11,14 +11,17 @@
   "license": "ISC",
   "dependencies": {
     "@instructor-ai/instructor": "^1.5.0",
+    "@prisma/client": "5.16.1",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "openai": "^4.52.2",
-    "typescript": "^5.5.2",
-    "zod": "^3.23.8"
+    "typescript": "^5.0.0",
+    "zod": "^3.23.8",
+    "zod-prisma-types": "^3.1.8"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.6"
+    "@types/bun": "^1.1.6",
+    "prisma": "5.16.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

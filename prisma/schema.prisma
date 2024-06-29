@@ -31,3 +31,51 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model PixelDex {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  type        String
+  description String
+  frontImg    String?
+  backImg     String?
+
+  // base stats
+  hp      Int
+  attack  Int
+  defense Int
+  speed   Int
+
+  // relationships
+  moves    Move[]
+  pixelman Pixelman[]
+}
+
+model Move {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  description String
+  type        String
+  power       Int
+  accuracy    Int
+
+  // relationships 
+  pixelDex   PixelDex @relation(fields: [pixelDexId], references: [id])
+  pixelDexId String
+}
+
+model Pixelman {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relationships
+  pixelDex   PixelDex @relation(fields: [pixelDexId], references: [id])
+  pixelDexId String
+}

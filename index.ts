@@ -4,8 +4,8 @@ import { z } from "zod";
 import readline from "readline";
 
 const oai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY ?? undefined,
-  organization: process.env.OPENAI_ORG_ID ?? undefined,
+  apiKey: process.env["OPENAI_API_KEY"] ?? undefined,
+  organization: process.env["OPENAI_ORG_ID"] ?? undefined,
 });
 
 const client = Instructor({
@@ -92,19 +92,19 @@ rl.question("What's the name of your DND Character ? ", function (givenName) {
             dndMonsterSchema
           );
           const fightSequence = await promptWithSchema(
-            `Generate a fight sequence for ${character.name} vs ${monster.name} using real stats. Make it light and fun, but keep it realistic to the stats.`,
+            `Generate a fight sequence for ${character["name"]} vs ${monster["name"]} using real stats. Make it light and fun, but keep it realistic to the stats.`,
             fightSequenceSchema
           );
 
 
           // FIGHT!
-          console.log(`\n\n${character.name} vs ${monster.name}: FIGHT!\n`);
+          console.log(`\n\n${character["name"]} vs ${monster["name"]}: FIGHT!\n`);
 
-          fightSequence.fightSequence.map((action) => {
+          fightSequence["fightSequence"].map((action) => {
             console.log(action);
           });
 
-          console.log(`The winner of the fight is ${fightSequence.winner}!`);
+          console.log(`The winner of the fight is ${fightSequence["winner"]}!`);
         }
       );
     }

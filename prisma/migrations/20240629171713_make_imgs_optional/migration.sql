@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "PixelDex" ALTER COLUMN "frontImg" DROP NOT NULL,
+ALTER COLUMN "backImg" DROP NOT NULL;
