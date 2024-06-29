@@ -1,10 +1,7 @@
 import z from "zod";
 
 export const locationTypeSchema = z.enum([
-  "Dungeon",
-  "Cave",
-  "Castle",
-  "Forest"
+  "forest"
 ]);
 export const tileTypeSchema = z.enum(["grass"]);
 
