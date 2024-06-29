@@ -1,10 +1,12 @@
+import z from "zod";
 
-
-import z from 'zod';
-
-
-export const locationTypeSchema = z.enum(['Dungeon', 'Cave', 'Castle', 'Forest']);
-export const tileTypeSchema = z.enum(['grass'])
+export const locationTypeSchema = z.enum([
+  "Dungeon",
+  "Cave",
+  "Castle",
+  "Forest"
+]);
+export const tileTypeSchema = z.enum(["grass"]);
 
 export const tileSchema = z.object({
   type: tileTypeSchema,
@@ -12,14 +14,20 @@ export const tileSchema = z.object({
   description: z.string().optional()
 });
 
-export const featureTypeSchema = z.enum(['Enemy', 'Chest', 'Pool', 'Pit', 'Grass']);
+export const featureTypeSchema = z.enum([
+  "Enemy",
+  "Chest",
+  "Pool",
+  "Pit",
+  "Grass"
+]);
 
 export const featureSchema = z.object({
   type: featureTypeSchema,
   description: z.string().optional()
 });
 
-export const terrainType = z.enum(['Enemy', 'Chest', 'Pool', 'Pit', 'Grass']);
+export const terrainType = z.enum(["Enemy", "Chest", "Pool", "Pit", "Grass"]);
 export const terrainSchema = z.object({
   type: featureTypeSchema,
   description: z.string().optional()
@@ -33,10 +41,10 @@ export const locationSchema = z.object({
   features: z.array(featureSchema),
   terrain: z.array(terrainSchema),
   x: z.number(),
-  y: z.number(),
+  y: z.number()
 });
 
-export type Location = z.infer<typeof locationSchema>
+export type Location = z.infer<typeof locationSchema>;
 export type LocationWithChildren = Location & {
   left?: Location;
   right?: Location;
@@ -45,14 +53,18 @@ export type LocationWithChildren = Location & {
 };
 
 export const Game = z.object({
-  currentLocation: locationSchema,
-  playerTile: tileSchema,
-  playerTeam: z.optional(z.array(z.object({
-    name: z.string(),
-    type: z.string(),
-    level: z.number(),
-    moves: z.array(z.string())
-  })))
+  currentLocation: locationSchema, //current map region
+  playerPosition: z.number(), //player's position in the current location
+  playerTeam: z.optional(
+    z.array(
+      z.object({
+        name: z.string(),
+        type: z.string(),
+        level: z.number(),
+        moves: z.array(z.string())
+      })
+    )
+  )
 });
 
-export type Game = z.infer<typeof Game>
+export type Game = z.infer<typeof Game>;
