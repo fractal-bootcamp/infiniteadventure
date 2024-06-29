@@ -1,4 +1,4 @@
-import { promptWithSchema } from "@b/svc/lib/prompt";
+import { promptWithSchema } from "@b/lib/prompt";
 import { z } from "zod";
 
 const PixelmanService = () => {
@@ -8,3 +8,5 @@ const PixelmanService = () => {
         }));
     }
 }
+
+export default PixelmanService;
