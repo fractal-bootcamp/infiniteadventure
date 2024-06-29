@@ -2,10 +2,10 @@ import type { Location } from "types";
 
 export type Direction = 'LEFT' | 'RIGHT' | 'UP' | 'DOWN'
 
-const exampleBaseLocation: Location = {
+export const exampleBaseLocation: Location = {
   name: "The Enchanted Forest",
   description: "A mysterious forest teeming with magical creatures and ancient secrets.",
-  locationType: "Forest",
+  locationType: "forest",
   grid: Array(256).fill({
     type: "grass",
     walkable: true,
@@ -23,9 +23,10 @@ const exampleBaseLocation: Location = {
       size: 1,
     }
   ],
-  terrain: Array(10).fill({}).map(() => ({
+  terrain: Array(5).fill({}).map(() => ({
     type: 'forest',
-    description: 'A dense patch of trees, too thick to pass through.'
+    description: 'A dense patch of trees, too thick to pass through.',
+    size: 2
   })),
   x: 0,
   y: 0
