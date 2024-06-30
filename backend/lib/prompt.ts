@@ -22,7 +22,7 @@ export const promptWithSchema = async <T extends z.ZodObject<any>>(
     model: "gpt-3.5-turbo",
     response_model: {
       schema: schema,
-      name: "User",
+      name: "Object",
     },
   });
   return response;

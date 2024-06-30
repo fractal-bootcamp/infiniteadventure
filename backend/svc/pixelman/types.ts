@@ -22,7 +22,7 @@ Steel = "Steel",
 Fairy = "Fairy",
 }
 
-const EffectivenessMap: Record<PokemonTypes, {
+export const EffectivenessMap: Record<PokemonTypes, {
     superEffective: PokemonTypes[],
     notEffective: PokemonTypes[],
     noEffect: PokemonTypes[]
